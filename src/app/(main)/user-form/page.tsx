@@ -17,6 +17,7 @@ const UserForm = () => {
   };
   const [formData, setFormData] = useState(initialFormData);
   const [isFormFieldChanged, setIsFormFieldChanged] = useState(false);
+  const [isClient, setIsClient] = useState(false);
   const navigate = useNavigate();
 
   const generateRandomId = (): string => {
@@ -24,20 +25,26 @@ const UserForm = () => {
   };
 
   useEffect(() => {
-    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
-      if (isFormFieldChanged) {
-        const message =
-          "You have unsaved changes. Are you sure you want to leave?";
-        e.returnValue = message;
-        return message;
-      }
-    };
-    window.addEventListener("beforeunload", handleBeforeUnload);
+    setIsClient(true);
+  }, []);
 
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
-  }, [isFormFieldChanged]);
+  useEffect(() => {
+    if (isClient) {
+      const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+        if (isFormFieldChanged) {
+          const message =
+            "You have unsaved changes. Are you sure you want to leave?";
+          e.returnValue = message;
+          return message;
+        }
+      };
+      window.addEventListener("beforeunload", handleBeforeUnload);
+
+      return () => {
+        window.removeEventListener("beforeunload", handleBeforeUnload);
+      };
+    }
+  }, [isFormFieldChanged, isClient]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
