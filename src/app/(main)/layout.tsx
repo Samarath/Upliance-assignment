@@ -9,7 +9,7 @@ import UserForm from "./user-form/page";
 import TextEditor from "./text-editor/page";
 import dynamic from "next/dynamic";
 
-const Counter = dynamic(() => import("../(main)/counter/page"), { ssr: false });
+const Counter = dynamic(() => import("./counter/page"), { ssr: false });
 
 export default function AppLayout() {
   return (
