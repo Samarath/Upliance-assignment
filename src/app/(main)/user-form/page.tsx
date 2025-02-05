@@ -25,7 +25,9 @@ const UserForm = () => {
   };
 
   useEffect(() => {
-    setIsClient(true);
+    if (typeof window !== "undefined") {
+      setIsClient(true);
+    }
   }, []);
 
   useEffect(() => {
@@ -52,13 +54,15 @@ const UserForm = () => {
   };
 
   const handleSubmit = () => {
-    const newId = generateRandomId();
-    const updatedFormData = { ...formData, id: newId };
-    localStorage.setItem("userData", JSON.stringify(updatedFormData));
-    dispatch(setUser(updatedFormData));
-    alert("User Data Saved!");
-    setFormData(initialFormData);
-    setIsFormFieldChanged(false);
+    if (typeof window !== "undefined") {
+      const newId = generateRandomId();
+      const updatedFormData = { ...formData, id: newId };
+      localStorage.setItem("userData", JSON.stringify(updatedFormData));
+      dispatch(setUser(updatedFormData));
+      alert("User Data Saved!");
+      setFormData(initialFormData);
+      setIsFormFieldChanged(false);
+    }
   };
 
   return (
@@ -139,7 +143,7 @@ const UserForm = () => {
         >
           Save
         </Button>
-        {localStorage.getItem("userData") ? (
+        {typeof window !== "undefined" && localStorage.getItem("userData") ? (
           <Button
             variant="outlined"
             color="primary"
