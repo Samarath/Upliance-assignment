@@ -8,12 +8,24 @@ import { useNavigate } from "react-router-dom";
 const Counter = () => {
   const savedCount = localStorage.getItem("count");
   const [count, setCount] = useState(savedCount ? parseInt(savedCount) : 0);
+  const [isClient, setIsClient] = useState(false);
 
   const navigate = useNavigate();
 
   useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (isClient) {
+      const savedCount = localStorage.getItem("count");
+      if (savedCount) setCount(parseInt(savedCount));
+    }
+  }, [isClient]);
+
+  useEffect(() => {
     localStorage.setItem("count", count.toString());
-  }, [count]);
+  }, [count, isClient]);
 
   //to get the fluid like effect we have to determine the steps
   const maxCount = 20;
