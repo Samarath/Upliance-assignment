@@ -1,9 +1,9 @@
 "use client";
 import { Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 
 function Home() {
-  const navigate = useNavigate();
+  const navigate = useRouter();
   return (
     <div
       style={{
@@ -16,7 +16,7 @@ function Home() {
         variant="contained"
         color="primary"
         sx={{ mr: 1 }}
-        onClick={() => navigate("/counter")}
+        onClick={() => navigate.push("/counter")}
       >
         Counter Compo
       </Button>
@@ -24,7 +24,7 @@ function Home() {
         variant="contained"
         color="primary"
         sx={{ mr: 1 }}
-        onClick={() => navigate("/user-form")}
+        onClick={() => navigate.push("/user-form")}
       >
         User Form
       </Button>

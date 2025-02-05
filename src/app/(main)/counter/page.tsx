@@ -3,14 +3,13 @@
 import { useState, useEffect } from "react";
 import { useSpring, animated } from "@react-spring/web";
 import { Button, Box, Typography } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 
 const Counter = () => {
-  const savedCount = localStorage.getItem("count");
-  const [count, setCount] = useState(savedCount ? parseInt(savedCount) : 0);
+  const [count, setCount] = useState(0);
   const [isClient, setIsClient] = useState(false);
 
-  const navigate = useNavigate();
+  const navigate = useRouter();
 
   useEffect(() => {
     setIsClient(true);
@@ -24,14 +23,13 @@ const Counter = () => {
   }, [isClient]);
 
   useEffect(() => {
-    localStorage.setItem("count", count.toString());
+    if (isClient) {
+      localStorage.setItem("count", count.toString());
+    }
   }, [count, isClient]);
 
-  //to get the fluid like effect we have to determine the steps
   const maxCount = 20;
-
   const fillLevel = Math.min((count / maxCount) * 100, 100);
-
   const fillAnimation = useSpring({
     height: `${fillLevel}%`,
     config: { mass: 1, tension: 210, friction: 20 },
@@ -75,7 +73,7 @@ const Counter = () => {
       <Button
         variant="outlined"
         color="primary"
-        onClick={() => navigate("/")}
+        onClick={() => navigate.push("/")}
         sx={{
           position: "absolute",
           top: "8px",

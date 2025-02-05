@@ -3,9 +3,9 @@
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import "react-quill-new/dist/quill.snow.css";
-import { useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import "./text-editor.css";
+import { useRouter } from "next/navigation";
 
 const ReactQuill = dynamic(
   () => import("react-quill-new").then((mod) => mod.default),
@@ -17,7 +17,7 @@ const ReactQuill = dynamic(
 
 const TextEditor = () => {
   const [formData, setFormData] = useState("");
-  const navigate = useNavigate();
+  const navigate = useRouter();
 
   useEffect(() => {
     const savedText = localStorage.getItem("userData");
@@ -46,7 +46,7 @@ const TextEditor = () => {
       <Button
         variant="outlined"
         color="primary"
-        onClick={() => navigate("/user-form")}
+        onClick={() => navigate.push("/user-form")}
         sx={{
           position: "absolute",
           top: "8px",

@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../../redux/slices/UserSlice";
 import { TextField, Button, Container, Typography, Box } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 
 const UserForm = () => {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ const UserForm = () => {
   const [formData, setFormData] = useState(initialFormData);
   const [isFormFieldChanged, setIsFormFieldChanged] = useState(false);
   const [isClient, setIsClient] = useState(false);
-  const navigate = useNavigate();
+  const navigate = useRouter();
 
   const generateRandomId = (): string => {
     return `${Date.now()}-${Math.floor(Math.random() * 1000000)}`;
@@ -61,8 +61,6 @@ const UserForm = () => {
     setIsFormFieldChanged(false);
   };
 
-  console.log(localStorage.getItem("userData"));
-
   return (
     <Container maxWidth="sm">
       <Box
@@ -79,7 +77,7 @@ const UserForm = () => {
         <Button
           variant="outlined"
           color="primary"
-          onClick={() => navigate("/")}
+          onClick={() => navigate.push("/")}
           sx={{
             position: "absolute",
             top: "8px",
@@ -145,7 +143,7 @@ const UserForm = () => {
           <Button
             variant="outlined"
             color="primary"
-            onClick={() => navigate("/text-editor")}
+            onClick={() => navigate.push("/text-editor")}
             sx={{ mt: 2, marginLeft: "10px" }}
           >
             Go to the text editor
