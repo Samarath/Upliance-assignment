@@ -5,6 +5,8 @@ import { store } from "../../redux/store";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./page";
 import Counter from "./counter/page";
+import UserForm from "./user-form/page";
+import TextEditor from "./text-editor/page";
 
 export default function AppLayout() {
   return (
@@ -13,8 +15,8 @@ export default function AppLayout() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/counter" element={<Counter />} />
-          <Route path="/user-form" element={<h1>form component</h1>} />
-          <Route path="/text-editor" element={<h1>text editor component</h1>} />
+          <Route path="/user-form" element={<UserForm />} />
+          <Route path="/text-editor" element={<TextEditor />} />
         </Routes>
         {/* <section>{children}</section> */}
       </Router>
