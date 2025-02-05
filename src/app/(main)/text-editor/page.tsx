@@ -28,6 +28,7 @@ const TextEditor = () => {
           .map(([key, value]) => `${key}: ${value}`)
           .join("\n");
         setFormData(formattedData);
+        /* eslint-disable-next-line */
       } catch (e) {
         setFormData(savedText);
       }
