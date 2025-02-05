@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Upliance-Assignment Documentation
 
-## Getting Started
+## Overview
 
-First, run the development server:
+This project is a **React-based web application** built using **Next.js**. It includes a **counter component**, a **user data form**, and a **rich text editor**. The application leverages several libraries and tools to provide a comprehensive and interactive user experience, such as:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Material UI**
+- **React Spring**
+- **TypeScript**
+- **React Router**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## File Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The project follows a modular structure with the main components organized under the `src/app` directory. Here's an overview of the file structure:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Key Components
 
-## Learn More
+### Counter Component
 
-To learn more about Next.js, take a look at the following resources:
+- **File**: `src/app/(main)/counter/page.tsx`
+- **Description**:
+  - A counter with buttons for increment, decrement, and reset.
+  - As the counter increases, the background color level changes accordingly.
+  - Resetting the counter sets the background color back to its initial state.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### User Data Form
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **File**: `src/app/(main)/user-form/page.tsx`
+- **Description**:
+  - A form to collect user data such as name, address, email, and phone.
+  - Generates a unique user ID and saves the data to local storage on form submission.
+  - Warns users about unsaved changes if they attempt to close the browser.
 
-## Deploy on Vercel
+### Rich Text Editor
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **File**: `src/app/(main)/text-editor/page.tsx`
+- **Description**:
+  - A rich text editor that visualizes user data.
+  - Supports text formatting options like bold, italic, underline, and lists.
+  - Ensures data persistence.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## State Management
+
+- **Files**: `src/app/redux/slices/UserSlice.tsx`, `src/app/redux/store.tsx`
+- **Description**:
+  - Manages application state using **Redux**.
+  - User data is stored and accessed through the Redux store.
+
+## Package Dependencies
+
+The project relies on several **npm packages** to provide its functionality. Below are the key dependencies and their purposes:
+
+- `@emotion/react`, `@emotion/styled`: For **CSS-in-JS** styling.
+- `@mui/material`: Material UI components for building the user interface.
+- `@react-spring/web`: For creating fluid animations.
+- `@reduxjs/toolkit`, `react-redux`: For state management with **Redux**.
+- `next`: For server-side rendering and static site generation.
+- `react`, `react-dom`: Core libraries for building the **React** application.
+- `react-quill`, `react-quill-new`: For integrating **rich text editors**.
+- `react-router-dom`: For handling routing within the application.
+
+## Development and Build Scripts
+
+The `package.json` file includes several scripts for development and production builds:
+
+- `dev`: Starts the development server using **Next.js** with **TurboPack**.
+- `build`: Builds the project for production.
+- `start`: Starts the production server.
